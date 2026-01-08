@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+#
+# Pre-commit hook to run automated quality checks
+# Ensures code quality standards before allowing commits
+
+set -e
+
+echo "Running automated quality checks..."
+
+echo "→ Formatting markdown tables..."
+npm run format:tables
+
+echo "→ Running markdownlint..."
+npm run lint:md
+
+echo "→ Running spell check..."
+npm run spell-check
+
+echo "→ Running PowerShell script analysis..."
+npm run lint:ps
+
+echo "→ Validating markdown frontmatter..."
+npm run lint:frontmatter
+
+echo "✓ All quality checks passed!"
